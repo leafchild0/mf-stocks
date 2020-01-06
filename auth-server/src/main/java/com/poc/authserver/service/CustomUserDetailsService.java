@@ -16,6 +16,7 @@ import com.poc.authserver.security.UserPrincipal;
 @Service
 public class CustomUserDetailsService implements UserDetailsService
 {
+	// Hardcoded user, for demo purposes
 	private User user = new User(1L,
 		"1",
 		"1@2",

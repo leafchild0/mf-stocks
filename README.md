@@ -3,9 +3,9 @@ This is simple JWT Auth Server.
 
 ## Example Of Rest API
 ### Commands 
-Sing In:
+Login:
 
-&nbsp;&nbsp; **URL** : `/api/auth/signin`
+&nbsp;&nbsp; **URL** : `/api/auth/login`
 
 &nbsp;&nbsp; **Method** : `POST`
 
@@ -17,7 +17,7 @@ Sing In:
     }
 ```
 
-&nbsp;&nbsp; **Response Body (JWT_Tocker)** :
+&nbsp;&nbsp; **Response Body (JWT_Token)** :
 ```json
     {
         "accessToken": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNTc4MzMzOTAwLCJpYXQiOjE1NzgyMzM5MDB9.N01PscrwkVXmIi9L5WDi5jR_OpHy3Xy893tES3nZRQY",

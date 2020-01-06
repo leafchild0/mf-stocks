@@ -40,10 +40,9 @@ public class JwtTokenProvider
 
 		return Jwts.builder()
 			.setSubject(Long.toString(userPrincipal.getId()))
-			.setIssuedAt(new Date())
+			.setIssuedAt(now)
 			.setExpiration(expiryDate)
 			.signWith(getKey())
-			//.signWith(SignatureAlgorithm.HS512, jwtSecret)
 			.compact();
 	}
 
@@ -69,6 +68,7 @@ public class JwtTokenProvider
 			Jwts.parser()
 				.setSigningKey(getKey())
 				.parseClaimsJws(authToken);
+
 			return true;
 		}
 		catch (SignatureException ex)
