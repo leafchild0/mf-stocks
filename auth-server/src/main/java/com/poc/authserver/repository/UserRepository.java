@@ -9,5 +9,4 @@ import com.poc.authserver.model.User;
 public interface UserRepository extends CrudRepository<User, Long>
 {
 	Optional<User> findByUsername(String username);
-	Optional<User> findByEmail(String email);
 }

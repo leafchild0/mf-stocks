@@ -52,16 +52,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 			.passwordEncoder(passwordEncoder());
 	}
 
-	//	@Override
-	//	public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception
-	//	{
-	//		authenticationManagerBuilder
-	//			.jdbcAuthentication()
-	//			.usersByUsernameQuery("select username, password from users")
-	//			.authoritiesByUsernameQuery("select username, role authorities from user_roles")
-	//			.dataSource(this.dataSource);
-	//	}
-
 	@Bean(BeanIds.AUTHENTICATION_MANAGER)
 	@Override
 	public AuthenticationManager authenticationManagerBean() throws Exception
@@ -115,6 +105,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 
 		// Add our custom JWT security filter
 		http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
-
 	}
 }

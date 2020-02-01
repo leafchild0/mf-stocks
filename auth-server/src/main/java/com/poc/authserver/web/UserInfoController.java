@@ -1,6 +1,5 @@
 package com.poc.authserver.web;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +13,12 @@ import com.poc.authserver.service.CustomUserDetailsService;
 @RequestMapping("/api/users")
 public class UserInfoController
 {
-	@Autowired CustomUserDetailsService customUserDetailsService;
+	final CustomUserDetailsService customUserDetailsService;
+
+	public UserInfoController(CustomUserDetailsService customUserDetailsService)
+	{
+		this.customUserDetailsService = customUserDetailsService;
+	}
 
 	@GetMapping("/{username}")
 	@Secured("ROLE_USER")

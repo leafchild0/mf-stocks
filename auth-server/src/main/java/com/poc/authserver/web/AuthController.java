@@ -4,8 +4,6 @@ import java.net.URI;
 
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -28,14 +26,18 @@ import com.poc.authserver.web.dto.RegisterDTO;
 @RequestMapping("/api/auth")
 public class AuthController
 {
-	@Autowired
-	AuthenticationManager authenticationManager;
+	final AuthenticationManager authenticationManager;
 
-	@Autowired
-	CustomUserDetailsService customUserDetailsService;
+	final CustomUserDetailsService customUserDetailsService;
 
-	@Autowired
-	JwtTokenProvider tokenProvider;
+	final JwtTokenProvider tokenProvider;
+
+	public AuthController(AuthenticationManager authenticationManager, CustomUserDetailsService customUserDetailsService, JwtTokenProvider tokenProvider)
+	{
+		this.authenticationManager = authenticationManager;
+		this.customUserDetailsService = customUserDetailsService;
+		this.tokenProvider = tokenProvider;
+	}
 
 	@PostMapping("/login")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginDTO loginDTO)
@@ -58,8 +60,7 @@ public class AuthController
 	{
 		if (customUserDetailsService.existsByUsername(registerDTO.getUsername()))
 		{
-			return new ResponseEntity("Username is already exists!",
-				HttpStatus.BAD_REQUEST);
+			return ResponseEntity.badRequest().body("Username is already exists!");
 		}
 
 		User result = customUserDetailsService.createNewUser(registerDTO);

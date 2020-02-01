@@ -19,11 +19,11 @@ import com.poc.authserver.web.dto.RegisterDTO;
 @Service
 public class CustomUserDetailsService implements UserDetailsService
 {
-	UserRepository userRepository;
+	final UserRepository userRepository;
 
-	RoleRepository roleRepository;
+	final RoleRepository roleRepository;
 
-	PasswordEncoder passwordEncoder;
+	final PasswordEncoder passwordEncoder;
 
 	public CustomUserDetailsService(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder)
 	{
