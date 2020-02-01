@@ -16,10 +16,10 @@ public class UserInfoController
 {
 	@Autowired CustomUserDetailsService customUserDetailsService;
 
-	@GetMapping("/{id}")
-	@Secured("ROLE_ADMIN")
-	public ResponseEntity getFullUserInfo(@PathVariable Long id)
+	@GetMapping("/{username}")
+	@Secured("ROLE_USER")
+	public ResponseEntity getFullUserInfo(@PathVariable String username)
 	{
-		return ResponseEntity.ok(customUserDetailsService.loadUserById(id));
+		return ResponseEntity.ok(customUserDetailsService.loadUserByUsername(username));
 	}
 }

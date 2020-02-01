@@ -1,5 +1,7 @@
 package com.poc.authserver.security;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,7 +33,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 	CustomUserDetailsService customUserDetailsService;
 
 	@Autowired
-	private JwtAuthenticationEntryPoint unauthorizedHandler;
+	JwtAuthenticationEntryPoint unauthorizedHandler;
+
+	@Autowired
+	DataSource dataSource;
 
 	@Bean
 	public JwtAuthenticationFilter jwtAuthenticationFilter()
@@ -46,6 +51,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 			.userDetailsService(customUserDetailsService)
 			.passwordEncoder(passwordEncoder());
 	}
+
+	//	@Override
+	//	public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception
+	//	{
+	//		authenticationManagerBuilder
+	//			.jdbcAuthentication()
+	//			.usersByUsernameQuery("select username, password from users")
+	//			.authoritiesByUsernameQuery("select username, role authorities from user_roles")
+	//			.dataSource(this.dataSource);
+	//	}
 
 	@Bean(BeanIds.AUTHENTICATION_MANAGER)
 	@Override
@@ -68,6 +83,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 			.and()
 			.csrf()
 			.disable()
+			.headers().frameOptions().disable()
+			.and()
 			.exceptionHandling()
 			.authenticationEntryPoint(unauthorizedHandler)
 			.and()
@@ -84,6 +101,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 				"/**/*.html",
 				"/**/*.css",
 				"/**/*.js")
+			.permitAll()
+			.antMatchers("/h2-console/**")
 			.permitAll()
 			.antMatchers("/api/auth/**")
 			.permitAll()
