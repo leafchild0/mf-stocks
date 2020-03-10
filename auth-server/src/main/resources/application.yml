@@ -23,3 +23,9 @@ spring:
     generate-ddl: false
     hibernate.ddl-auto: update
     show-sql: true
+  application:
+    name: auth-server
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
