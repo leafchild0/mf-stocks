@@ -39,7 +39,6 @@ public class UserPrincipal implements UserDetails
 
 	public static UserPrincipal create(User user)
 	{
-
 		List<GrantedAuthority> authorities = user.getRoles()
 			.stream().map(role ->
 				new SimpleGrantedAuthority(role.getName().name())
@@ -123,7 +122,6 @@ public class UserPrincipal implements UserDetails
 	@Override
 	public int hashCode()
 	{
-
 		return Objects.hash(id);
 	}
 }

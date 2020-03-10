@@ -1,5 +1,7 @@
 package com.poc.authserver.security;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,7 +33,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 	CustomUserDetailsService customUserDetailsService;
 
 	@Autowired
-	private JwtAuthenticationEntryPoint unauthorizedHandler;
+	JwtAuthenticationEntryPoint unauthorizedHandler;
+
+	@Autowired
+	DataSource dataSource;
 
 	@Bean
 	public JwtAuthenticationFilter jwtAuthenticationFilter()
@@ -68,6 +73,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 			.and()
 			.csrf()
 			.disable()
+			.headers().frameOptions().disable()
+			.and()
 			.exceptionHandling()
 			.authenticationEntryPoint(unauthorizedHandler)
 			.and()
@@ -85,6 +92,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 				"/**/*.css",
 				"/**/*.js")
 			.permitAll()
+			.antMatchers("/h2-console/**")
+			.permitAll()
 			.antMatchers("/api/auth/**")
 			.permitAll()
 			.antMatchers("/api/user/checkUsernameAvailability", "/api/user/checkEmailAvailability")
@@ -96,6 +105,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 
 		// Add our custom JWT security filter
 		http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
-
 	}
 }
