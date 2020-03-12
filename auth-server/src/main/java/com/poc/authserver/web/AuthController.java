@@ -4,6 +4,7 @@ import java.net.URI;
 
 import javax.validation.Valid;
 
+import com.poc.authserver.HasLogger;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -24,7 +25,7 @@ import com.poc.authserver.web.dto.RegisterDTO;
 
 @RestController
 @RequestMapping("/api/auth")
-public class AuthController
+public class AuthController implements HasLogger
 {
 	final AuthenticationManager authenticationManager;
 
@@ -42,6 +43,9 @@ public class AuthController
 	@PostMapping("/login")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginDTO loginDTO)
 	{
+		getLogger().info("Login by username " + loginDTO.getUsername());
+
+		// Any auth possible, i.e. SAML and LDAP
 		Authentication authentication = authenticationManager.authenticate(
 			new UsernamePasswordAuthenticationToken(
 				loginDTO.getUsername(),
@@ -58,6 +62,8 @@ public class AuthController
 	@PostMapping("/register")
 	public ResponseEntity<?> registerUser(@Valid @RequestBody RegisterDTO registerDTO)
 	{
+		getLogger().info("Registering user by username " + registerDTO.getUsername());
+
 		if (customUserDetailsService.existsByUsername(registerDTO.getUsername()))
 		{
 			return ResponseEntity.badRequest().body("Username is already exists!");

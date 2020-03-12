@@ -1,5 +1,6 @@
 package com.poc.authserver.web;
 
+import com.poc.authserver.HasLogger;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +12,7 @@ import com.poc.authserver.service.CustomUserDetailsService;
 
 @RestController
 @RequestMapping("/api/users")
-public class UserInfoController
+public class UserInfoController implements HasLogger
 {
 	final CustomUserDetailsService customUserDetailsService;
 
@@ -24,6 +25,7 @@ public class UserInfoController
 	@Secured("ROLE_USER")
 	public ResponseEntity getFullUserInfo(@PathVariable String username)
 	{
+		getLogger().info("Getting user by username " + username);
 		return ResponseEntity.ok(customUserDetailsService.loadUserByUsername(username));
 	}
 }
