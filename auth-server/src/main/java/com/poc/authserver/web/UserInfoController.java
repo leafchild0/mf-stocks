@@ -26,6 +26,7 @@ public class UserInfoController implements HasLogger
 	public ResponseEntity getFullUserInfo(@PathVariable String username)
 	{
 		getLogger().info("Getting user by username " + username);
+
 		return ResponseEntity.ok(customUserDetailsService.loadUserByUsername(username));
 	}
 }
