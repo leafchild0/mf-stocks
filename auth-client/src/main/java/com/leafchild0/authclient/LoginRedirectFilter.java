@@ -5,11 +5,12 @@ import com.netflix.zuul.context.RequestContext;
 import org.springframework.stereotype.Component;
 
 /**
+ * Has to redirect request of it's for login
  * @author victor
  * @date 09.03.2020
  */
 @Component
-public class TokenCheckFilter extends ZuulFilter {
+public class LoginRedirectFilter extends ZuulFilter {
 
 	@Override
 	public String filterType() {
@@ -27,13 +28,13 @@ public class TokenCheckFilter extends ZuulFilter {
 	public boolean shouldFilter() {
 
 		RequestContext ctx = RequestContext.getCurrentContext();
-		return ctx.getRequest().getParameter("Authorization") != null;
+		return ctx.getRequest().getRequestURI().endsWith("/data");
 	}
 
 	@Override
 	public Object run() {
 
-		// Make a call to auth service and check token is valid
+		// Perform actual redirection
 		return null;
 	}
 }
