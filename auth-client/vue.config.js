@@ -1,4 +1,4 @@
-const CopyPlugin = require('copy-webpack-plugin');
+const FileManagerPlugin = require('filemanager-webpack-plugin');
 const path = require('path');
 
 module.exports = {
@@ -16,9 +16,11 @@ module.exports = {
 	},
 	chainWebpack: config => {
 		config.plugin('html').tap(args => {
-			args[0].template = path.resolve(__dirname, 'src/main/webapp/public/index.html');
+			args[0].template = path.resolve(__dirname, 'src/main/webapp/index.html');
 			return args;
 		});
+		config.plugins.delete('pwa');
+		config.plugins.delete('workbox');
 	},
 	configureWebpack: {
 		resolve: {
@@ -30,14 +32,18 @@ module.exports = {
 			app: './src/main/webapp/main.js'
 		},
 		plugins: [
-			new CopyPlugin([
-				{
-					from: 'src/main/webapp/public',
-					to: path.resolve(__dirname, 'src/main/webapp/dist'),
-					flatten: true,
-					ignore: ['index.html', '*.png', '*.jpg']
-				},
-			]),
+			new FileManagerPlugin({
+				onEnd: [
+					{
+						copy: [
+							{
+								source: path.resolve(__dirname, 'src/main/webapp/dist'),
+								destination: path.resolve(__dirname, 'src/main/resources/static')
+							}
+						]
+					},
+				]
+			})
 		]
 	}
 };
