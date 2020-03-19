@@ -28,7 +28,7 @@ public class LoginRedirectFilter extends ZuulFilter {
 	public boolean shouldFilter() {
 
 		RequestContext ctx = RequestContext.getCurrentContext();
-		return ctx.getRequest().getRequestURI().endsWith("/data");
+		return ctx.getRequest().getRequestURI().endsWith("/login");
 	}
 
 	@Override
