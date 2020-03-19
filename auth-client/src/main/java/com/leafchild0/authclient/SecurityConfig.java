@@ -30,7 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 	}
 
 	@Override
-	public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception
+	public void configure(AuthenticationManagerBuilder authenticationManagerBuilder)
 	{
 	}
 
@@ -50,12 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 			.and()
 			.csrf()
 			.disable()
-			.headers().frameOptions().disable()
-			.and()
-			.exceptionHandling()
-			.and()
-			.sessionManagement()
-			.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+			.headers().frameOptions().sameOrigin()
 			.and()
 			.authorizeRequests()
 			.antMatchers("/*",
@@ -68,7 +63,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 				"/**/*.css",
 				"/**/*.js")
 			.permitAll();
-			//.anyRequest()
-			//.authenticated();
 	}
 }
