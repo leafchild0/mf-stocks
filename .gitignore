@@ -3,3 +3,4 @@
 /gradle/wrapper/
 node_modules/
 auth-client/src/main/webapp/dist/
+build/
