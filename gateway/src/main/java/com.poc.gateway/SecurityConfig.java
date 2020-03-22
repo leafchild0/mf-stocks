@@ -2,8 +2,6 @@ package com.poc.gateway;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -33,12 +31,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 			.addFilterAfter(new JwtTokenAuthenticationFilter(),
 				UsernamePasswordAuthenticationFilter.class)
 			.authorizeRequests()
-			.antMatchers("/login", "/register").permitAll()
-			.antMatchers("/data/**").permitAll()
-			.antMatchers("/data-service/**").permitAll()
-			.antMatchers("/data-service/admin").hasRole("ADMIN")
-			.antMatchers("/data-service/user").hasRole("USER")
-			.antMatchers("/data-service/guest").permitAll();
+			.antMatchers("/auth/login", "/auth/register").permitAll()
+//			.antMatchers("/data/**").permitAll()
+			.anyRequest()
+			.authenticated();
+//			.antMatchers("/data/admin").hasRole("ADMIN")
+//			.antMatchers("/data/user").hasRole("USER")
+					;
 	}
 }
 

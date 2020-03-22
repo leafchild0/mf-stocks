@@ -22,7 +22,6 @@ import com.poc.authserver.service.CustomUserDetailsService;
 
 public class JwtAuthenticationFilter extends OncePerRequestFilter
 {
-
 	@Autowired
 	private JwtTokenProvider tokenProvider;
 

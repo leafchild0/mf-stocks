@@ -1,7 +1,7 @@
 server:
   port: 9091
-  servlet:
-    context-path: /api
+#  servlet:
+#    context-path: /api
 
 auth-server:
   jwtSecret: a3ZzApRSDQF5E9cH3JFV1LNBzOtQEiv6OumGJudd3Ao=
@@ -28,6 +28,11 @@ spring:
   application:
     name: auth-server
   cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        instanceId: ${spring.application.name}:${random.value}
     loadbalancer:
       ribbon:
         enabled: false

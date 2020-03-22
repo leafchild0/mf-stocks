@@ -5,14 +5,16 @@ spring:
     consul:
       host: localhost
       port: 8500
+      discovery:
+        instanceId: ${spring.application.name}:${random.value}
 
 server:
   port: 9095
   error:
     whitelabel:
       enabled: true
-  servlet:
-    context-path: /data
+#  servlet:
+#    context-path: /data
 
 logging:
   level:
