@@ -24,7 +24,7 @@ import com.poc.authserver.web.dto.LoginDTO;
 import com.poc.authserver.web.dto.RegisterDTO;
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping
 public class AuthController implements HasLogger
 {
 	final AuthenticationManager authenticationManager;

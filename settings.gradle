@@ -11,3 +11,5 @@ rootProject.name = 'auth-buddy'
 
 include 'auth-server'
 include 'auth-client'
+include 'gateway'
+include 'data-service'

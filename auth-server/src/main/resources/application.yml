@@ -1,5 +1,7 @@
 server:
   port: 9091
+  servlet:
+    context-path: /api
 
 auth-server:
   jwtSecret: a3ZzApRSDQF5E9cH3JFV1LNBzOtQEiv6OumGJudd3Ao=

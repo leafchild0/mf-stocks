@@ -81,6 +81,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 			.sessionManagement()
 			.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 			.and()
+//			.addFilterAfter(new JwtUsernamePasswordAuthenticationFilter(authenticationManager()),
+//				UsernamePasswordAuthenticationFilter.class)
 			.authorizeRequests()
 			.antMatchers("/*",
 				"/favicon.ico",
@@ -94,14 +96,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 			.permitAll()
 			.antMatchers("/h2-console/**")
 			.permitAll()
-			.antMatchers("/api/auth/**")
+			.antMatchers("/login","/register")
 			.permitAll()
 			.antMatchers("/api/user/checkUsernameAvailability", "/api/user/checkEmailAvailability")
 			.permitAll()
 			.antMatchers(HttpMethod.GET, "/api/users/**")
 			.permitAll();
-			//.anyRequest()
-			//.authenticated();
+
 
 		// Add our custom JWT security filter
 		http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);

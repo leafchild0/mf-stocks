@@ -1,8 +1,6 @@
-package com.poc.authserver.jwt;
+package com.poc.gateway.security;
 
-import java.time.Instant;
 import java.util.Date;
-import java.util.stream.Collectors;
 
 import javax.crypto.SecretKey;
 
@@ -10,10 +8,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
 
-import com.poc.authserver.security.UserPrincipal;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -31,32 +27,20 @@ public class JwtTokenProvider
 	@Value("${auth-server.jwtSecret}")
 	private String jwtSecret;
 
-	@Value("${auth-server.jwtExpirationInMs}")
-	private int jwtExpirationInMs;
+//	@Value("${auth-server.jwtExpirationInMs}")
+//	private int jwtExpirationInMs;
 
-	public String generateToken(Authentication authentication)
+	public Long getUserIdFromJWT(Claims claims)
 	{
-		UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
-
-		Instant now = Instant.now();
-		return Jwts.builder()
-			.setSubject(Long.toString(userPrincipal.getId()))
-			.claim("authorities", userPrincipal.getAuthorities().stream()
-				.map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
-			.setIssuedAt(Date.from(now))
-			.setExpiration(Date.from(now.plusSeconds(jwtExpirationInMs)))
-			.signWith(getKey())
-			.compact();
+		return Long.parseLong(claims.getSubject());
 	}
 
-	public Long getUserIdFromJWT(String token)
+	public Claims getClaims(String token)
 	{
-		Claims claims = Jwts.parser()
-			.setSigningKey(getKey())
-			.parseClaimsJws(token)
-			.getBody();
-
-		return Long.parseLong(claims.getSubject());
+		return Jwts.parser()
+				.setSigningKey(getKey())
+				.parseClaimsJws(token)
+				.getBody();
 	}
 
 	private SecretKey getKey()

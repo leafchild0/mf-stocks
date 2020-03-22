@@ -1,4 +1,4 @@
-package com.poc.authserver;
+package com.poc.data;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,10 +6,10 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-public class JwtAuthServerApplication
+public class DataServiceApplication
 {
 	public static void main(String[] args)
 	{
-		SpringApplication.run(JwtAuthServerApplication.class, args);
+		SpringApplication.run(DataServiceApplication.class, args);
 	}
 }
