@@ -32,6 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 				UsernamePasswordAuthenticationFilter.class)
 			.authorizeRequests()
 			.antMatchers("/auth/login", "/auth/register").permitAll()
+		    .antMatchers("/health-check").permitAll()
 //			.antMatchers("/data/**").permitAll()
 			.anyRequest()
 			.authenticated();

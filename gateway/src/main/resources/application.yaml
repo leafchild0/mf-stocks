@@ -3,14 +3,12 @@ spring:
     name: gateway-service
   cloud:
     consul:
+      host: localhost
+      port: 8500
       discovery:
+        healthCheckPath: /health-check
+        healthCheckInterval: 20s
         instanceId: ${spring.application.name}:${random.value}
-
-hystrix:
-  command:
-    default:
-      circuitBreaker:
-        enabled: false
 
 server:
   port: 8765
