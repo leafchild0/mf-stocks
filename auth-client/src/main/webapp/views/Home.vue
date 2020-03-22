@@ -1,5 +1,11 @@
 <template>
 	<div class='home'>
+		<div class="events" v-for="e in events" :key="e.name">
+			<span class="event-name">{{e.name}}</span>
+			<span class="event-date">{{e.date}}</span>
+			<span class="event-time">{{e.time}}</span>
+			<span class="event-message">{{e.message}}</span>
+		</div>
 	</div>
 </template>
 
@@ -10,13 +16,12 @@
 		name: 'home',
 		data() {
 			return {
-				tabSelected: 0,
-				places: []
+				events: []
 			};
 		},
 		created() {
-			authApi.get('/api/data').then(resp => {
-				this.places = resp.data;
+			authApi.get('/data/events').then(resp => {
+				this.events = resp.data;
 			}).catch(() => {
 				this.$toastr.e('Ups... Something went wrong');
 			});
