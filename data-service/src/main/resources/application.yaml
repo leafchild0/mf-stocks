@@ -20,5 +20,5 @@ logging:
   level:
     org.springframework.web: INFO
     org.springframework.cloud.netflix: DEBUG
-    com.netcracker.mano.cm.gateway: TRACE
+    com.poc.data: TRACE
     org.springframework.data.elasticsearch: DEBUG
