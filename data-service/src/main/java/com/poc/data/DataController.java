@@ -22,7 +22,7 @@ public class DataController {
 		events.add(new DataDTO("deleted-03", "2020-03-12", "04:01", "Removed tracking due to incorrect data in it"));
 		events.add(new DataDTO("updated-02", "2020-03-14", "00:30", "Updated tracking because of changes in fiscal "
 			+ "docs"));
-		events.add(new DataDTO("updated-02", "2020-03-18", "17:30", "Updated tracking due to change location"));
+		events.add(new DataDTO("updated-02.1", "2020-03-18", "17:30", "Updated tracking due to change location"));
 		events.add(new DataDTO("deleted-01", "2020-03-25", "17:59", "Removed tracking due to inactivity for 1 month"));
 
 		return events;
