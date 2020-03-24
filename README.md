@@ -53,7 +53,7 @@ Roman Rybak,
 Victor Malyshev
 
 ---
-#Additional info
+# Additional info
 
 ### Architecture
 This project main goal is to demonstrate a simple way of using modern microservices architecture for any application. Including auth and services orchestration. Both problems are well defined and solved in elegant way which includes all best practices for microservices development like scaling, fault-tolerance, monitoring, easy deployments and many more. 
@@ -119,6 +119,8 @@ What's happening:
 7. Data service returns data back to client app
 8. Client app displays the data to user
 
+---
+# Services
 
 ### Auth client
 Simple Vue app backed by Spring boot. Can be easily replaced with node or any other platform. We used Spring to
