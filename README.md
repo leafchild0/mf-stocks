@@ -31,7 +31,7 @@ Running will require the following steps:
 After that, on [http://localhost:8080], client app will be waiting. There is a predefined user for testing: 
 ```json 
     {
-        "username": "user2" 
+        "username": "user2", 
         "password": "1"
     }
 ```
