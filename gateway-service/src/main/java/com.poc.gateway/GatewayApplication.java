@@ -10,6 +10,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Main class for Gateway app
+ */
 @Slf4j
 @EnableZuulProxy
 @SpringBootApplication
@@ -17,14 +20,17 @@ import lombok.extern.slf4j.Slf4j;
 public class GatewayApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(GatewayApplication.class, args);
 	}
 
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
+
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
+
 				registry.addMapping("/**").allowedOrigins("*");
 			}
 		};

@@ -13,14 +13,13 @@ import com.poc.gateway.security.JwtTokenAuthenticationFilter;
 import com.poc.gateway.security.JwtTokenProvider;
 
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter
-{
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private JwtTokenProvider tokenProvider;
 
 	@Override
-	protected void configure(HttpSecurity httpSecurity) throws Exception
-	{
+	protected void configure(HttpSecurity httpSecurity) throws Exception {
+
 		httpSecurity
 			.csrf().disable()
 			.logout().disable()
@@ -36,12 +35,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 				UsernamePasswordAuthenticationFilter.class)
 			.authorizeRequests()
 			.antMatchers("/auth/login", "/auth/register").permitAll()
-		    .antMatchers("/health-check").permitAll()
+			.antMatchers("/health-check").permitAll()
 			.anyRequest()
 			.authenticated();
-//			.antMatchers("/data/admin").hasRole("ADMIN")
-//			.antMatchers("/data/user").hasRole("USER")
-					;
+		//			.antMatchers("/data/admin").hasRole("ADMIN")
+		//			.antMatchers("/data/user").hasRole("USER")
+		;
 	}
 }
 

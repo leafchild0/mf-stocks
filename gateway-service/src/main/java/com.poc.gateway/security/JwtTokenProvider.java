@@ -14,21 +14,24 @@ import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.UnsupportedJwtException;
 import io.jsonwebtoken.security.Keys;
 
+/**
+ * Provider for JWT tokens
+ * Manages, generate and validate tokens
+ */
 @Component
-public class JwtTokenProvider
-{
+public class JwtTokenProvider {
 	private static final Logger logger = LoggerFactory.getLogger(JwtTokenProvider.class);
 
 	@Value("${auth-service.jwtSecret}")
 	private String jwtSecret;
 
-	public Long getUserIdFromJWT(Claims claims)
-	{
+	public Long getUserIdFromJWT(Claims claims) {
+
 		return Long.parseLong(claims.getSubject());
 	}
 
-	public Claims getClaims(String token)
-	{
+	public Claims getClaims(String token) {
+
 		return Jwts.parserBuilder()
 			.setSigningKey(getKey())
 			.build()
@@ -37,15 +40,14 @@ public class JwtTokenProvider
 
 	}
 
-	private SecretKey getKey()
-	{
+	private SecretKey getKey() {
+
 		return Keys.hmacShaKeyFor(jwtSecret.getBytes());
 	}
 
-	public boolean validateToken(String authToken)
-	{
-		try
-		{
+	public boolean validateToken(String authToken) {
+
+		try {
 			Jwts.parserBuilder()
 				.setSigningKey(getKey())
 				.build()
@@ -53,20 +55,16 @@ public class JwtTokenProvider
 
 			return true;
 		}
-		catch (MalformedJwtException ex)
-		{
+		catch (MalformedJwtException ex) {
 			logger.error("Invalid JWT token");
 		}
-		catch (ExpiredJwtException ex)
-		{
+		catch (ExpiredJwtException ex) {
 			logger.error("Expired JWT token");
 		}
-		catch (UnsupportedJwtException ex)
-		{
+		catch (UnsupportedJwtException ex) {
 			logger.error("Unsupported JWT token");
 		}
-		catch (IllegalArgumentException ex)
-		{
+		catch (IllegalArgumentException ex) {
 			logger.error("JWT claims string is empty.");
 		}
 		return false;

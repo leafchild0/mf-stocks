@@ -5,11 +5,9 @@ import org.springframework.boot.actuate.autoconfigure.security.servlet.Managemen
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
 @SpringBootApplication(exclude = { SecurityAutoConfiguration.class, ManagementWebSecurityAutoConfiguration.class })
 @EnableDiscoveryClient
-@EnableZuulProxy
 public class ClientApplication {
 
 	public static void main(String[] args) {

@@ -67,13 +67,7 @@
 						})
 						.then(response => {
 								tokenManager.setToken(response.data.accessToken);
-
-								if (self.$route.query.from) {
-									self.$router.replace(this.$route.query.from);
-								}
-								else {
-									self.$router.replace('home');
-								}
+								self.$router.replace('home');
 							},
 							err => {
 								if (err.response.status === 401) {

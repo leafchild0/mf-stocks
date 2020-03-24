@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: auth-client
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        instanceId: ${spring.application.name}:${random.value}
+    loadbalancer:
+      ribbon:
+        enabled: false
+
+server:
+  port: 8080
+  error:
+    whitelabel:
+      enabled: true
+#  servlet:
+#    context-path: /data
+
+logging:
+  level:
+    org.springframework.web: INFO
+    org.springframework.cloud.netflix: DEBUG
+    com.poc.data: TRACE
+    org.springframework.data.elasticsearch: DEBUG

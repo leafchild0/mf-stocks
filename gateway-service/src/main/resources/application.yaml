@@ -59,5 +59,6 @@ ribbon:
   eureka:
     enabled: false
 
+# Secret to generate tokens, used in both auth service and in gateway
 auth-service:
   jwtSecret: a3ZzApRSDQF5E9cH3JFV1LNBzOtQEiv6OumGJudd3Ao=
