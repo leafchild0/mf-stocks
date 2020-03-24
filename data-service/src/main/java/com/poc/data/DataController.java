@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Simple controller to imitate some data which will be requested from client service
+ */
 @RestController
 public class DataController {
 
