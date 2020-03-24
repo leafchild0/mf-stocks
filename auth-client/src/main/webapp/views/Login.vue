@@ -44,6 +44,7 @@
 
 <script>
 	import authApi from '../auth/authApi';
+	import tokenManager from '../auth/tokenManager';
 
 	export default {
 		name: 'login',
@@ -60,26 +61,26 @@
 				const self = this;
 
 				if (this.valid) {
-					authApi
-						.post('api/login', {
+					authApi.post('auth/login', {
 							username: this.username,
 							password: this.password
 						})
-						.then(
-							response => {
-								// TODO Set in session storage
-								self.$store.dispatch('setUserToken', response.data.token);
-								if (this.$route.query.from) {
-									this.$router.replace(this.$route.query.from);
-								} else {
-									this.$router.replace('home');
+						.then(response => {
+								tokenManager.setToken(response.data.accessToken);
+
+								if (self.$route.query.from) {
+									self.$router.replace(this.$route.query.from);
+								}
+								else {
+									self.$router.replace('home');
 								}
 							},
 							err => {
-								if (err.response.status === 401){
-									this.$toastr.e('Username or Password is incorrect');
-								} else {
-									this.$toastr.e('Ups... Something went wrong');
+								if (err.response.status === 401) {
+									self.$toastr.e('Username or Password is incorrect');
+								}
+								else {
+									self.$toastr.e('Ups... Something went wrong');
 								}
 							}
 						);

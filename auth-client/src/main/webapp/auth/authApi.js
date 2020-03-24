@@ -6,13 +6,15 @@
  */
 
 import axios from 'axios';
+import tokenManager from './tokenManager';
 
-const authInstance = axios.create({});
+const authInstance = axios.create({
+	baseURL: '/gateway-service/'
+});
 
 authInstance.interceptors.request.use(config => {
-	// TODO: Should simply poke session to get that token
-	//config.headers.common['Authorization'] = 'Bearer ' + store.getters['getUserToken'];
-	//store.commit('setIsLoading',true);
+
+	config.headers.common['Authorization'] = 'Bearer ' + tokenManager.getToken();
 	return config;
 });
 

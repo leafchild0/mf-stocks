@@ -13,11 +13,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(
-	securedEnabled = true,
-	jsr250Enabled = true,
-	prePostEnabled = true
-)
 public class SecurityConfig extends WebSecurityConfigurerAdapter
 {
 
@@ -52,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 				.headers().frameOptions().sameOrigin()
 				.and()
 				.authorizeRequests()
-				.antMatchers("/api/login", "/api/data")
+				.antMatchers("/auth/**", "/data/**")
 				.permitAll()
 			.antMatchers("/*",
 				"/favicon.ico",

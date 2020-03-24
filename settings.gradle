@@ -9,5 +9,7 @@
 
 rootProject.name = 'auth-buddy'
 
-include 'auth-server'
+include 'auth-service'
 include 'auth-client'
+include 'gateway-service'
+include 'data-service'

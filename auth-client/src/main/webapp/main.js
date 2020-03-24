@@ -1,25 +1,14 @@
 import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
+import tokenManager from './auth/tokenManager';
 import vuetify from './VuetifyConf';
 import Toastr from 'vue-toastr';
 
 Vue.config.productionTip = false;
 
-
 // Check token in session storage
-/*if (window.sessionStorage) {
-	const userToken = sessionStorage.getItem(USER_TOKEN_KEY);
-	const isDark = sessionStorage.getItem(IS_DARK) === 'true';
-	// Use it if exists
-	if (userToken) {
-		store.dispatch(SET_TOKEN_ACTION, userToken);
-	}
-	if (isDark) {
-		store.dispatch(SET_DARK_ACTION, isDark);
-	}
-}*/
-
+tokenManager.checkAndPopulateToken();
 initApp();
 
 function initApp() {
