@@ -1,11 +1,11 @@
 <template>
 	<div class='home'>
-		<div class="events" v-for="e in events" :key="e.name">
-			<span class="event-name">{{e.name}}</span>
-			<span class="event-date">{{e.date}}</span>
-			<span class="event-time">{{e.time}}</span>
-			<span class="event-message">{{e.message}}</span>
-		</div>
+		<v-data-table
+				:headers="headers"
+				:items="events"
+				:items-per-page="10"
+				class="elevation-1"
+		></v-data-table>
 	</div>
 </template>
 
@@ -16,7 +16,13 @@
 		name: 'home',
 		data() {
 			return {
-				events: []
+				events: [],
+				headers: [
+					{text: 'Name', value: 'name'},
+					{text: 'Date', value: 'date'},
+					{text: 'Time', value: 'time'},
+					{text: 'Message', value: 'message'}
+				]
 			};
 		},
 		created() {
