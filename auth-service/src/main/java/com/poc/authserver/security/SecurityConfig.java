@@ -81,8 +81,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 			.sessionManagement()
 			.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 			.and()
-//			.addFilterAfter(new JwtUsernamePasswordAuthenticationFilter(authenticationManager()),
-//				UsernamePasswordAuthenticationFilter.class)
 			.authorizeRequests()
 			.antMatchers("/*",
 				"/favicon.ico",
