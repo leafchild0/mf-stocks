@@ -106,7 +106,7 @@ Overall, this is simplest architecture I can ever thing of in order to demonstra
 
 It's important to understand how things are working on a simple example. Basic login process can be described as follows
 
-![Login process](https://d3dehtdmp2rwcw.cloudfront.net/ms_174129/qvY3G4HTqjxGb9xVZhBtQ057sG5eRc/umlSequence%2Bdiagram%2Bwith%2BAuthentication%2B-%2BCacoo%2B2020-03-24%2B22-50-32.png?Expires=1585083600&Signature=nsGhDG3LoCtnMNfgpzM9TLhTOZcdAy8dR3ARu-LBCkJwy2~beZJOuzBR3U5AoI6eKMVKXm5Ha1SkCVF0pmaMZHIytZyRKlH9gN4g1lfOBmocE7jzPSOpNabPU0epmub0pqrAoB4DnFNgqG16cfKtmZc5ON7ezgvwkbAJaTTB2TYxDa-u82sIEAh~O18qEJuQHBfyodcGXwLXWWJZQ4OxC8SSF2Jd3PPSpplHJTMMZv87rMlQ54gw22gi5bzKytqR4LdHOPIFZ9lLt9f-byTt8TVdVMNlBvWOl3-ySGXBO0Wo~H2QUX3o-NEcr-fse5l2Qr1U2jkogwhr9LIGZmQmUg__&Key-Pair-Id=APKAJBCGYQYURKHBGCOA)
+![Login process](https://github.com/leafchild0/auth-buddy/blob/master/Login%20process.png)
 
 What's happening:
 
