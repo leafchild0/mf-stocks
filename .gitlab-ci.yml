@@ -1,0 +1,21 @@
+image: timbru31/java-node:8-jdk
+
+before_script:
+  - apt-get update -qy
+
+stages:
+  - build
+  - test
+
+test:
+  stage: test
+  script:
+    - ./gradlew test
+
+build:
+  stage: build
+  script:
+    - ./gradlew build
+  artifacts:
+    paths:
+      - build/libs/pubslist-0.0.1-SNAPSHOT.jar
