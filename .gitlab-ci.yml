@@ -18,4 +18,7 @@ build:
     - ./gradlew build
   artifacts:
     paths:
-      - build/libs/pubslist-0.0.1-SNAPSHOT.jar
+      - gateway-service/build/libs/gateway-service-0.0.1-SNAPSHOT.jar
+      - data-service/build/libs/data-service-0.0.1-SNAPSHOT.jar
+      - auth-service/build/libs/auth-service-0.0.1-SNAPSHOT.jar
+      - auth-client/build/libs/auth-client-0.0.1-SNAPSHOT.jar
