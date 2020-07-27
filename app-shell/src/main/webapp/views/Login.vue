@@ -44,7 +44,7 @@
 
 <script>
 	import authApi from '../auth/authApi';
-	import {SET_TOKEN_ACTION} from "../constants";
+	import {SET_TOKEN_ACTION} from '../constants';
 
 	export default {
 		name: 'login',
@@ -62,9 +62,9 @@
 
 				if (this.valid) {
 					authApi.post('auth/login', {
-							username: this.username,
-							password: this.password
-						})
+						username: this.username,
+						password: this.password
+					})
 						.then(response => {
 								self.$store.dispatch(SET_TOKEN_ACTION, response.data.token);
 								self.$router.replace('stocks');
@@ -72,8 +72,7 @@
 							err => {
 								if (err.response.status === 401) {
 									self.$toastr.e('Username or Password is incorrect');
-								}
-								else {
+								} else {
 									self.$toastr.e('Ups... Something went wrong');
 								}
 							}

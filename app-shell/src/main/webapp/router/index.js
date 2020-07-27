@@ -4,7 +4,7 @@ import Stocks from '../views/Stocks.vue';
 import PurchaseHistory from '../views/History.vue';
 import Login from '../views/Login.vue';
 import SignUp from '../views/SignUp.vue';
-import Cart from "../views/Cart.vue";
+import Cart from '../views/Cart.vue';
 import store from '../store/index';
 
 Vue.use(VueRouter);
