@@ -11,10 +11,8 @@ Vue.use(Vuex);
 
 const state = {
 	isUserLogged: false,
-	isLoading: false,
 	userToken: '',
-	user: {},
-	isDark: false
+	user: {}
 };
 // Check token in session storage
 const isStorageSupported = window.sessionStorage;

@@ -3,7 +3,7 @@ import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import Login from '../views/Login.vue';
 import SignUp from '../views/SignUp.vue';
-import tokenManager from '../auth/tokenManager';
+import store from '../store/index';
 
 Vue.use(VueRouter);
 
@@ -42,7 +42,7 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
 
 	// We can just check if token is there
-	const currentUser = tokenManager.getToken();
+	const currentUser = store.state.isUserLogged;
 	const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
 
 	if (requiresAuth && !currentUser) {

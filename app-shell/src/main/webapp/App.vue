@@ -12,14 +12,19 @@
 <script>
 	import 'material-design-icons-iconfont/dist/material-design-icons.css';
 	import '@mdi/font/css/materialdesignicons.css';
-	import tokenManager from "./auth/tokenManager";
+	import {mapGetters, mapActions} from 'vuex';
+	import {IS_LOGGED, SET_LOGGED_ACTION} from './constants';
 	import Navbar from './components/Navbar';
 
 	export default {
 		components: {Navbar},
+		computed: {
+			...mapGetters([IS_LOGGED])
+		},
 		methods: {
+			...mapActions([SET_LOGGED_ACTION]),
 			logout() {
-				tokenManager.setToken('');
+				this.setUserLogged(false);
 				this.$router.push('/');
 			}
 		}

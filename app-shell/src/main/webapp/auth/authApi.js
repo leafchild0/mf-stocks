@@ -6,16 +6,27 @@
  */
 
 import axios from 'axios';
-import tokenManager from './tokenManager';
+import store from './../store/index';
 
 const authInstance = axios.create({
 	baseURL: '/gateway-service/'
 });
 
 authInstance.interceptors.request.use(config => {
+	config.headers.common['Authorization'] = 'Bearer ' + store.getters['getUserToken'];
+	store.commit('setIsLoading',true);
 
-	config.headers.common['Authorization'] = 'Bearer ' + tokenManager.getToken();
 	return config;
+});
+
+authInstance.interceptors.response.use(function (response) {
+	store.commit('setIsLoading',false);
+
+	return response;
+}, function (error) {
+	store.commit('setIsLoading',false);
+
+	return Promise.reject(error);
 });
 
 export default authInstance;

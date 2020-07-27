@@ -44,7 +44,7 @@
 
 <script>
 	import authApi from '../auth/authApi';
-	import tokenManager from '../auth/tokenManager';
+	import {SET_TOKEN_ACTION} from "../constants";
 
 	export default {
 		name: 'login',
@@ -66,7 +66,7 @@
 							password: this.password
 						})
 						.then(response => {
-								tokenManager.setToken(response.data.accessToken);
+								self.$store.dispatch(SET_TOKEN_ACTION, response.data.token);
 								self.$router.replace('home');
 							},
 							err => {
