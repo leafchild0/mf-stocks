@@ -1,6 +1,6 @@
 rootProject.name = 'stocks-mf'
 
 include 'auth-service'
-include 'auth-client'
+include 'app-shell'
 include 'gateway-service'
 include 'data-service'
