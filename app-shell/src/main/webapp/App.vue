@@ -2,6 +2,7 @@
 	<div id='app'>
 		<v-app>
 			<v-content>
+				<navbar v-if='isUserLogged' @logout='logout'/>
 				<router-view/>
 			</v-content>
 		</v-app>
@@ -12,8 +13,10 @@
 	import 'material-design-icons-iconfont/dist/material-design-icons.css';
 	import '@mdi/font/css/materialdesignicons.css';
 	import tokenManager from "./auth/tokenManager";
+	import Navbar from './components/Navbar';
 
 	export default {
+		components: {Navbar},
 		methods: {
 			logout() {
 				tokenManager.setToken('');
