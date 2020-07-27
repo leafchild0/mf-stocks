@@ -1,18 +1,16 @@
 <template>
 	<v-row class='toolbar'>
 		<div class='nav'>
-			<div class='nav__logo'>
-				<img alt='Pubs logo' src='../assets/logo.png' @click='gotoHome()'/>
-			</div>
+			<!--<div class='nav__logo'>
+				<img alt='Stocks logo' src='../assets/logo.png' @click='gotoHome()'/>
+			</div>-->
 			<div class='nav__menu'>
-				<router-link exact active-class='router-active-link' to='/home'>Places</router-link>
+				<router-link exact active-class='router-active-link' to='/stocks'>Stocks</router-link>
 				|
-				<div class='admin' v-if='getUser.role && getUser.role.includes("ADMIN")'>
-					<router-link exact active-class='router-active-link'
-								 to='/admin'>Admin</router-link>
+				<div class='admin'>
+					<router-link exact active-class='router-active-link' to='/history'>History</router-link>
 					|
 				</div>
-				<router-link exact active-class='router-active-link' to='/drum'>Drum</router-link>
 			</div>
 			<v-menu bottom offset-y>
 				<template v-slot:activator='{ on }'>
@@ -25,8 +23,8 @@
 					<v-list-item @click='openProfile'>
 						<v-list-item-title >Open Profile</v-list-item-title>
 					</v-list-item>
-					<v-list-item>
-						<v-switch :label='`Dark Theme`' v-model='isDark'/>
+					<v-list-item @click='openCart'>
+						<v-list-item-title >Open Cart</v-list-item-title>
 					</v-list-item>
 					<v-list-item @click='logout'>
 						<v-list-item-title>Logout</v-list-item-title>
@@ -41,15 +39,14 @@
 <script>
 
 	import authApi from '../auth/authApi';
-	import {GET_USER, IS_DARK, SET_DARK_ACTION, SET_USER_ACTION} from '../constants';
-	import {mapActions, mapGetters} from 'vuex';
-	import randomColor from 'randomcolor';
+	import {GET_USER, SET_USER_ACTION} from '../constants';
+	import {mapGetters} from 'vuex';
 
 	export default {
 		name: 'navbar',
 		props: [],
 		computed: {
-			...mapGetters([GET_USER, IS_DARK]),
+			...mapGetters([GET_USER]),
 			getUserAvatar() {
 				let avatar = 'Avatar';
 				if (Object.keys(this.getUser).length > 0) {
@@ -57,40 +54,31 @@
 						this.getUser.surname.charAt(0).toUpperCase());
 				}
 				return avatar;
-			} ,
-			isDark: {
-				get() {return this.isDarkTheme;},
-				set(value) {
-					this.setDarkTheme(value);
-					this.$vuetify.theme.dark = value;
-				}
 			}
 		},
 		methods: {
-			...mapActions([SET_DARK_ACTION]),
 			logout() {
 				this.$emit('logout');
 			},
 			gotoHome() {
-				this.$router.push('/home');
+				this.$router.push('/stocks');
 			},
 			openProfile() {
 				this.$router.push({name: 'user', params: { id: this.getUser.id } });
 			},
+			openCart() {
+				this.$router.push('/cart');
+			},
 		},
 		created() {
 
-			const color = randomColor();
 			const self = this;
 			authApi.get('/api/user')
 				.then(async response => {
 					await self.$store.dispatch(SET_USER_ACTION, response.data);
-					self.$refs.avatar.$el.style.backgroundColor = color;
 				}).catch(() => {
 					this.$toastr.e('Ups... Something went wrong');
 				});
-
-			if (this.isDark) this.$vuetify.theme.dark = true;
 		}
 	};
 </script>
