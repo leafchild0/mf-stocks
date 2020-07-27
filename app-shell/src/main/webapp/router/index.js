@@ -1,8 +1,10 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Home from '../views/Home.vue';
+import Stocks from '../views/Stocks.vue';
+import PurchaseHistory from '../views/History.vue';
 import Login from '../views/Login.vue';
 import SignUp from '../views/SignUp.vue';
+import Cart from "../views/Cart.vue";
 import store from '../store/index';
 
 Vue.use(VueRouter);
@@ -19,9 +21,25 @@ const routes = [
 		component: Login
 	},
 	{
-		path: '/home',
-		name: 'home',
-		component: Home,
+		path: '/stocks',
+		name: 'stocks',
+		component: Stocks,
+		meta: {
+			requiresAuth: true
+		}
+	},
+	{
+		path: '/history',
+		name: 'history',
+		component: PurchaseHistory,
+		meta: {
+			requiresAuth: true
+		}
+	},
+	{
+		path: '/cart',
+		name: 'cart',
+		component: Cart,
 		meta: {
 			requiresAuth: true
 		}
@@ -48,7 +66,7 @@ router.beforeEach((to, from, next) => {
 	if (requiresAuth && !currentUser) {
 		next('login');
 	} else if (!requiresAuth && currentUser) {
-		next('home');
+		next('stocks');
 	} else {
 		next();
 	}

@@ -67,7 +67,7 @@
 						})
 						.then(response => {
 								self.$store.dispatch(SET_TOKEN_ACTION, response.data.token);
-								self.$router.replace('home');
+								self.$router.replace('stocks');
 							},
 							err => {
 								if (err.response.status === 401) {
