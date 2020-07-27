@@ -1,4 +1,4 @@
-rootProject.name = 'auth-buddy'
+rootProject.name = 'stocks-mf'
 
 include 'auth-service'
 include 'auth-client'
