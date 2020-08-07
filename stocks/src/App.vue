@@ -1,13 +1,16 @@
 <template>
 	<v-app>
-		<v-main>
-			<v-text-field
-				v-model="search"
-				class="mx-4"
-				flat
-				hide-details
-				label="Search">
-			</v-text-field>
+		<v-main class="d-flex justify-center">
+			<div class="search-box">
+				<v-text-field
+					clearable
+					v-model="search"
+					class="mx-4 d-flex justify-center"
+					flat
+					hide-details
+					label="Search">
+				</v-text-field>
+			</div>
 
 			<stock :stocks="filtered"></stock>
 		</v-main>
@@ -45,3 +48,13 @@ export default {
 	}
 };
 </script>
+
+<style lang="scss">
+
+
+.search-box {
+	max-width: 500px;
+	margin: 0 auto;
+}
+
+</style>
