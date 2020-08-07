@@ -19,14 +19,4 @@ authInstance.interceptors.request.use(config => {
 	return config;
 });
 
-authInstance.interceptors.response.use(function (response) {
-	store.commit('setIsLoading',false);
-
-	return response;
-}, function (error) {
-	store.commit('setIsLoading',false);
-
-	return Promise.reject(error);
-});
-
 export default authInstance;
