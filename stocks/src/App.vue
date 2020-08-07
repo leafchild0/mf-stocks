@@ -1,24 +1,20 @@
 <template>
-	<div id="app">
-		<img alt="Vue logo" src="./assets/logo.png">
-	</div>
+  <v-app>
+    <v-main>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
 
 export default {
-	name: 'App',
-	components: {}
-}
-</script>
+  name: 'App',
 
-<style lang="scss">
-#app {
-	font-family: Helvetica, Arial, sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	text-align: center;
-	color: #2c3e50;
-	margin-top: 60px;
-}
-</style>
+  components: {
+  },
+
+  data: () => ({
+    //
+  }),
+};
+</script>
