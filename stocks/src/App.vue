@@ -5,14 +5,27 @@
 				<v-text-field
 					clearable
 					v-model="search"
-					class="mx-4 d-flex justify-center"
 					flat
+					prepend-inner-icon="mdi-search-web"
 					hide-details
 					label="Search">
 				</v-text-field>
 			</div>
-
-			<stock :stocks="filtered"></stock>
+			<v-row align="center" justify="center">
+				<div class="stocks mx-4 d-flex justify-center" :key="s.id" v-for="s in filtered">
+					<stock :stock="s"
+					@add="addToCart"></stock>
+				</div>
+			</v-row>
+			<v-snackbar
+				v-model="notification.show"
+				absolute
+				bottom
+				right
+				:color="notification.color">
+				<span>{{ notification.message }}</span>
+				<v-icon dark>mdi-checkbox-marked-circle</v-icon>
+			</v-snackbar>
 		</v-main>
 	</v-app>
 </template>
@@ -36,8 +49,22 @@ export default {
 	},
 	data: () => ({
 		stocks: [],
-		search: ''
+		search: '',
+		notification: {
+			color: 'success',
+			message: '',
+			show: false
+		}
 	}),
+	methods: {
+		addToCart(toAdd) {
+			// Should be added somewhere
+			// Show notification
+			console.log(toAdd);
+			this.notification.message = 'Stock has been added to your cart';
+			this.notification.show = true;
+		}
+	},
 	async created() {
 		try {
 			const stocksResponse = await auth.get('/stocks');
