@@ -9,7 +9,7 @@ module.exports = {
 		proxy: {
 			'^/gateway-service': {
 				target: 'http://localhost:8765',
-				pathRewrite: {"^/gateway-service" : ""},
+				pathRewrite: {'^/gateway-service' : ''},
 				ws: true,
 				changeOrigin: true,
 

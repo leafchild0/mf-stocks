@@ -6,15 +6,13 @@
  */
 
 import axios from 'axios';
-import store from './../store/index';
 
 const authInstance = axios.create({
 	baseURL: '/gateway-service/'
 });
 
 authInstance.interceptors.request.use(config => {
-	config.headers.common['Authorization'] = 'Bearer ' + store.getters['getUserToken'];
-	store.commit('setIsLoading',true);
+	//config.headers.common['Authorization'] = 'Bearer ' + store.getters['getUserToken'];
 
 	return config;
 });
