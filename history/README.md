@@ -12,6 +12,20 @@ npm install -g json-server
 json-server --watch db.json
 ```
 
+
+### Docker build 
+
+```shell script
+docker build --tag st-history:1.0 .
+```
+
+### Docker run  
+
+```shell script
+docker run --publish 8080:8080 --detach --name st_h st-history:1.0
+```
+
+
 ### Compiles and hot-reloads for development
 ```
 npm run serve

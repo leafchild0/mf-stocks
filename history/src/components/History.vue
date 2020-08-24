@@ -23,24 +23,24 @@
 export default {
 	name: 'history',
 	props: {
-    historyRecords: Array
+		historyRecords: Array
 	},
-  data () {
-    return {
-      search: '',
-      headers: [
-        {
-          text: 'Stock',
-          align: 'start',
-          value: 'stockName',
-        },
-        { text: 'Operation Date', value: 'date' },
-        { text: 'User', value: 'username' },
-        { text: 'Amount', value: 'amount', filterable: false },
-        { text: 'Type', value: 'type' },
-      ]
-    }
-  },
+	data () {
+		return {
+			search: '',
+			headers: [
+				{
+					text: 'Stock',
+					align: 'start',
+					value: 'stockName',
+				},
+				{ text: 'Operation Date', value: 'date' },
+				{ text: 'User', value: 'username' },
+				{ text: 'Amount', value: 'amount', filterable: false },
+				{ text: 'Type', value: 'type' },
+			]
+		};
+	},
 	methods: {
 	}
 };

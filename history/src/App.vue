@@ -16,10 +16,10 @@ import auth from './auth/authApi';
 export default {
 	name: 'App',
 	components: {
-    History
+		History
 	},
 	data: () => ({
-    history: [],
+		history: [],
 		search: '',
 		notification: {
 			color: 'success',
@@ -33,8 +33,9 @@ export default {
 		try {
 			const stocksHistoryResponse = await auth.get('/history');
 			this.history = stocksHistoryResponse.data;
-      Array.from(this.history, record => record.date = new Date(record.date));
+			Array.from(this.history, record => record.date = new Date(record.date));
 		} catch (e) {
+      /* eslint no-console: ["error", { allow: ["warn", "error"] }] */
 			console.error(e);
 		}
 	}
