@@ -10,6 +10,7 @@ module.exports = {
 				pathRewrite: {'^/gateway-service': ''},
 				ws: true,
 				changeOrigin: true,
+
 			}
 		}
 	},
