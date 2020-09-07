@@ -24,12 +24,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-web")
     runtimeOnly("org.springframework.boot:spring-boot-devtools")
-    implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
-
     implementation("commons-io:commons-io:2.4")
-    implementation("io.jsonwebtoken:jjwt:0.9.0")
-    implementation("io.jsonwebtoken:jjwt-api:0.10.6")
-    implementation("com.mashape.unirest:unirest-java:1.4.9")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.9.8")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
