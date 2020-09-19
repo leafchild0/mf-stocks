@@ -4,8 +4,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class MoneyTrackerApplication
+class CartApplication
 
 fun main(args: Array<String>) {
-    runApplication<MoneyTrackerApplication>(*args)
+    runApplication<CartApplication>(*args)
 }
