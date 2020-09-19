@@ -2,7 +2,7 @@
 	<v-app>
 		<v-main class="d-flex justify-center">
 			<v-row align="center" justify="center">
-					<history :historyRecords="history"></history>
+				<history :historyRecords="history"></history>
 			</v-row>
 		</v-main>
 	</v-app>
@@ -27,15 +27,14 @@ export default {
 			show: false
 		}
 	}),
-	methods: {
-	},
+	methods: {},
 	async created() {
 		try {
 			const stocksHistoryResponse = await auth.get('/history');
 			this.history = stocksHistoryResponse.data;
 			Array.from(this.history, record => record.date = new Date(record.date));
 		} catch (e) {
-      /* eslint no-console: ["error", { allow: ["warn", "error"] }] */
+			/* eslint no-console: ["error", { allow: ["warn", "error"] }] */
 			console.error(e);
 		}
 	}
@@ -44,10 +43,9 @@ export default {
 
 <style lang="scss">
 
-
-.search-box {
-	max-width: 500px;
-	margin: 0 auto;
-}
+	.search-box {
+		max-width: 500px;
+		margin: 0 auto;
+	}
 
 </style>

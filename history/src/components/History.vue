@@ -1,22 +1,21 @@
-  <template>
+<template>
 	<div class="history">
-    <v-card>
-      <v-card-title>
-        <v-text-field
-            v-model="search"
-            label="Search"
-            single-line
-            hide-details
-        ></v-text-field>
-      </v-card-title>
-      <v-data-table
-          :headers="headers"
-          :items="historyRecords"
-          :search="search"
-      ></v-data-table>
-    </v-card>
+		<v-card>
+			<v-card-title>
+				<v-text-field
+					v-model="search"
+					label="Search"
+					single-line
+					hide-details
+				></v-text-field>
+			</v-card-title>
+			<v-data-table
+				:headers="headers"
+				:items="historyRecords"
+				:search="search"
+			></v-data-table>
+		</v-card>
 	</div>
-
 </template>
 
 <script>
@@ -25,7 +24,7 @@ export default {
 	props: {
 		historyRecords: Array
 	},
-	data () {
+	data() {
 		return {
 			search: '',
 			headers: [
@@ -34,15 +33,14 @@ export default {
 					align: 'start',
 					value: 'stockName',
 				},
-				{ text: 'Operation Date', value: 'date' },
-				{ text: 'User', value: 'username' },
-				{ text: 'Amount', value: 'amount', filterable: false },
-				{ text: 'Type', value: 'type' },
+				{text: 'Operation Date', value: 'date'},
+				{text: 'User', value: 'username'},
+				{text: 'Amount', value: 'amount', filterable: false},
+				{text: 'Type', value: 'type'},
 			]
 		};
 	},
-	methods: {
-	}
+	methods: {}
 };
 </script>
 
