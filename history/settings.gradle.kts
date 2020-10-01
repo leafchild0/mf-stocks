@@ -1,3 +1,3 @@
-rootProject.name = "cart"
+rootProject.name = "history"
 
 include(":frontend", ":server")

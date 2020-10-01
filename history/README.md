@@ -1,45 +1,19 @@
-# history
+# History Service
+Project base on Kotlin and VueJs
 
-### Install mock json server 
+## How to build 
 
+Project consists of frontend project anb server project. 
+Build of the server side initiate build of the frontend side.
 ```shell script
-npm install -g json-server
+ > cd server
+ > ./gradlew build
 ```
 
-### Run mock json server 
+## How to run
 
+The file db.json should be in the server folder.
 ```shell script
-json-server --watch db.json
+ > cd server 
+ > java -Dserver.port=8090 -jar build/libs/server-0.0.1-SNAPSHOT.jar
 ```
-
-
-### Docker build 
-
-```shell script
-docker build --tag st-history:1.0 .
-```
-
-### Docker run  
-
-```shell script
-docker run --publish 8080:8080 --detach --name st_h st-history:1.0
-```
-
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

@@ -18,14 +18,14 @@ import org.springframework.test.web.servlet.get
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ExtendWith(SpringExtension::class, MockitoExtension::class)
-class CartControllerTests {
+class HistoryControllerTests {
 
-    @Autowired lateinit var mockMvc: MockMvc
+    @Autowired
+    lateinit var mockMvc: MockMvc
 
     @Test
-    fun `Test get Cart in the happy path scenario`() {
-        mockMvc.get("/carts")
+    fun `Test get History in the happy path scenario`() {
+        mockMvc.get("/history")
                 .andExpect { status { isOk } }
     }
-
 }
