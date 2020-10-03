@@ -1,19 +1,45 @@
-# Cart
-Project base on Kotlin and VueJs
+# Cart Service
 
-## How to build 
+### Install mock json server 
 
-Project consists of frontend project anb server project. 
-Build of the server side initiate build of the frontend side.
 ```shell script
- > cd server
- > ./gradlew build
+npm install -g json-server
 ```
 
-## How to run
+### Run mock json server 
 
-The file db.json should be in the server folder.
 ```shell script
- > cd server 
- > java -Dserver.port=8090 -jar build/libs/server-0.0.1-SNAPSHOT.jar
+json-server --watch db.json
 ```
+
+
+### Docker build 
+
+```shell script
+docker build --tag st-cart:1.0 .
+```
+
+### Docker run  
+
+```shell script
+docker run --publish 8080:8080 --detach --name st_h st-cart:1.0
+```
+
+
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
