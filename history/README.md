@@ -10,10 +10,10 @@ Build of the server side initiate build of the frontend side.
  > ./gradlew build
 ```
 
-## How to run
+## How to run Dev project from CL
 
 The file db.json should be in the server folder.
 ```shell script
  > cd server 
- > java -Dserver.port=8090 -jar build/libs/server-0.0.1-SNAPSHOT.jar
+ > java -Dserver.port=9000 -Dspring.profiles.active=dev -Dhistory.db.location=db.json -jar build/libs/server-0.0.1-SNAPSHOT.jar
 ```
