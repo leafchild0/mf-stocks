@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "history.db.location",
+      "type": "java.lang.String",
+      "description": "Description for history.db.location."
+  }
+] }

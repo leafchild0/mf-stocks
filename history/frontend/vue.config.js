@@ -8,11 +8,10 @@ module.exports = {
 	devServer: {
 		proxy: {
 			'^/gateway-service': {
-				target: 'http://localhost:8090',
+				target: 'http://localhost:9000',
 				pathRewrite: {'^/gateway-service': ''},
 				ws: true,
 				changeOrigin: true,
-
 			}
 		}
 	},
