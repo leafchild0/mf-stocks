@@ -1,15 +1,6 @@
 package com.kotlinspringvue.backend
 
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.fasterxml.jackson.module.kotlin.readValue
-import com.fasterxml.jackson.module.kotlin.registerKotlinModule
-import com.kotlinspringvue.backend.History
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestMethod
-import org.springframework.web.bind.annotation.RestController
-import java.io.File
-
+import org.springframework.web.bind.annotation.*
 
 /**
  * Created by romanrybak on 06.09.2020.
@@ -21,5 +12,11 @@ class HistoryController(private val repository: HistoryRepository) {
     fun getListOfHistory() : List<History>
     {
         return repository.findAll()
+    }
+
+    @PostMapping("/history")
+    fun addHistory(@RequestBody history: History) : History
+    {
+        return repository.save(history)
     }
 }
