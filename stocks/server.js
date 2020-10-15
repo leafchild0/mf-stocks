@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const db = require('./src/models');
 app.use(bodyParser.json());
+const consul = require('consul')();
 
 // Routes
 require('./src/stocks.routes')(app);
@@ -34,4 +35,17 @@ db.mongoose.connect(db.url, {
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
 	console.log(`App listening on port ${PORT}`);
+	consul.agent.join('127.0.0.1', function(err) {
+		if (err) throw err;
+
+		consul.agent.service.register('mf-stocks', function(err) {
+			if (err) throw err;
+		});
+	});
+});
+
+process.on('exit', function() {
+	consul.agent.service.deregister('mf-stocks', function(err) {
+		if (err) throw err;
+	});
 });

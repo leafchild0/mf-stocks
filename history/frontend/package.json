@@ -1,5 +1,5 @@
 {
-  "name": "stocks",
+  "name": "frontend",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,12 +10,7 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
-    "consul": "^0.37.0",
-    "body-parser": "^1.19.0",
     "core-js": "^3.6.5",
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "mongoose": "^5.10.9",
     "vue": "^2.6.11",
     "vuetify": "^2.2.11"
   },
@@ -24,7 +19,7 @@
     "@vue/cli-plugin-eslint": "~4.4.0",
     "@vue/cli-service": "~4.4.0",
     "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
+    "eslint": "^6.8.0",
     "eslint-plugin-vue": "^6.2.2",
     "sass": "^1.19.0",
     "sass-loader": "^8.0.0",
