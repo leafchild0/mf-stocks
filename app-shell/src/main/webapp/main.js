@@ -9,7 +9,6 @@ import Toastr from 'vue-toastr';
 Vue.config.productionTip = false;
 
 // Check token in session storage
-// Check token in session storage
 if (window.sessionStorage) {
 	const userToken = sessionStorage.getItem(USER_TOKEN_KEY);
 	// Use it if exists
@@ -32,5 +31,4 @@ function initApp() {
 		defaultPosition: 'toast-bottom-center',
 		defaultProgressBar: false
 	});
-
 }

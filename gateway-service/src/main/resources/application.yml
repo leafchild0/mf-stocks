@@ -3,7 +3,7 @@ spring:
     name: gateway-service
   cloud:
     consul:
-      host: localhost
+      host: consul
       port: 8500
       discovery:
         healthCheckPath: /health-check

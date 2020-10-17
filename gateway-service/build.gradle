@@ -4,7 +4,7 @@ plugins {
 	id 'java'
 }
 
-group = 'com.poc.auth-buddy'
+group = 'com.poc.stocks-mf'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
@@ -25,7 +25,7 @@ ext {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
-	implementation 'org.springframework.cloud:spring-cloud-starter-consul-all'
+	implementation 'org.springframework.cloud:spring-cloud-starter-consul-discovery'
 	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-zuul'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	compile group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.1'

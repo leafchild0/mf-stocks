@@ -4,15 +4,18 @@ plugins {
 	id 'java'
 	id 'application'
 	id 'idea'
-
 }
 
-group = 'com.poc.auth-buddy'
+group = 'com.poc.stocks-mf'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
 application {
 	mainClassName = 'com.poc.authserver.JwtAuthServerApplication'
+}
+
+repositories {
+	mavenCentral()
 }
 
 configurations {

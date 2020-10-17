@@ -3,16 +3,18 @@ spring:
     name: app-shell
   cloud:
     consul:
-      host: localhost
+      host: consul
+#      host: localhost
       port: 8500
       discovery:
+        prefer-ip-address: true
         instanceId: ${spring.application.name}:${random.value}
     loadbalancer:
       ribbon:
         enabled: false
 
 server:
-  port: 8080
+  port: 8088
   error:
     whitelabel:
       enabled: true
