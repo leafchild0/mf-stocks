@@ -196,3 +196,34 @@ Get User Info:
     {
         "events": "[...]"
     }
+```
+
+
+# Deployment 
+This section describes how to deploy the skeleton of the mf-stocks based on micro-frontend architecture.
+The skeleton includes: 
+
+  - Consul - service discovery.
+  - App-shell - main frontend service, which responsible for single-entry point + routing.
+  - Auth-service - this service responsible for authentication and authorization.
+  - Gateway-service - Provides gateway api for frontend services.
+  
+The first step is to build: app-shell/auth-service/gateway-service.
+
+### Run in docker
+
+Docker compose file build images and run containers for services: 
+
+  - consul
+  - app-shell
+  - auth-service
+  - gateway-service.
+  
+```shell script
+    docker-compose up
+```
+
+### Build separate docker image
+```shell script
+    docker build -t app-shell .
+```
