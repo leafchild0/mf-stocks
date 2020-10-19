@@ -10,43 +10,39 @@
 
 <script>
 
-	import Cart from '@/components/Cart';
-	import auth from './auth/authApi';
+import Cart from '@/components/Cart';
+import auth from './auth/authApi';
 
-	export default {
-		name: 'App',
-		components: {
-			Cart
-		},
-		data: () => ({
-			carts: [],
-			search: '',
-			notification: {
-				color: 'success',
-				message: '',
-				show: false
-			}
-		}),
-		async created()
-		{
-			try
-			{
-				const cartsResponse = await auth.get('/carts');
-				if (cartsResponse.status === 200) this.carts = cartsResponse.data;
-			}
-			catch (e)
-			{
-				console.error(e);
-			}
+export default {
+	name: 'App',
+	components: {
+		Cart
+	},
+	data: () => ( {
+		carts: [],
+		search: '',
+		notification: {
+			color: 'success',
+			message: '',
+			show: false
 		}
-	};
+	} ),
+	async created() {
+		try {
+			const cartsResponse = await auth.get('/carts');
+			if (cartsResponse.status === 200) this.carts = cartsResponse.data;
+		} catch (e) {
+			console.error(e);
+		}
+	}
+};
 </script>
 
 <style scoped lang='scss'>
 
-	.search-box {
-		max-width: 500px;
-		margin: 0 auto;
-	}
+.search-box {
+	max-width: 500px;
+	margin: 0 auto;
+}
 
 </style>
