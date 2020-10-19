@@ -1,5 +1,3 @@
-def nodeVersion = '8.0.0'
-
 buildscript {
     repositories {
         maven {
