@@ -12,12 +12,10 @@ buildscript {
 
 apply plugin: 'com.moowork.node'
 
+task build(type: NpmTask) {
+    args = ['run', 'build']
+}
 
-task buildClient(type: Exec) {
-    dependsOn npmInstall
-    inputs.file("package-lock.json").withPathSensitivity(PathSensitivity.RELATIVE)
-    outputs.cacheIf { true }
-
-    inputs.dir("src/").withPathSensitivity(PathSensitivity.RELATIVE)
-    commandLine "npm", "run", "build"
+task clean {
+    delete 'dist/'
 }

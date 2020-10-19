@@ -32,11 +32,16 @@ task buildClient(type: Exec) {
     commandLine "npm", "run", "build"
 }
 
-task buildServer(type: Exec) {
-    dependsOn npmInstall
-    dependsOn buildClient
-    inputs.file("package-lock.json").withPathSensitivity(PathSensitivity.RELATIVE)
-    inputs.dir("src/").withPathSensitivity(PathSensitivity.RELATIVE)
-    outputs.cacheIf { true }
-    commandLine "npm", "run", "build"
+task buildServer(type: NpmTask) {
+    args = ['run', 'build']
+}
+
+task build(type: GradleBuild) {
+    tasks = ['buildClient', 'buildServer']
+    buildName = 'user-account-internal'
+}
+
+task clean {
+    delete 'dist/'
+    delete 'client/dist/'
 }
