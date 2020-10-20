@@ -2,6 +2,7 @@ image: timbru31/java-node:8-jdk
 
 before_script:
   - apt-get update -qy
+  - npm install -g @vue/cli
 
 stages:
   - build
