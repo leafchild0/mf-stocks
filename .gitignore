@@ -3,3 +3,9 @@
 node_modules/
 app-shell/src/main/webapp/dist/
 build/
+/history/frontend/node/**
+/cart/.gradle/**
+/gateway-service/.gradle/**
+/stocks/.gradle/**
+/user-account/.gradle/**
+/history/.gradle/**
