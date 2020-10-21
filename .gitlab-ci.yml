@@ -4,6 +4,7 @@ before_script:
   - apt-get update -qy
   - npm i -g @vue/cli
   - npm i -g @vue/cli-service
+  - npm i -g @vue/cli-plugin-babel
 
 stages:
   - build
