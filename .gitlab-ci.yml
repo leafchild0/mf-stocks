@@ -3,7 +3,8 @@ image: timbru31/java-node:8-jdk
 before_script:
   - apt-get update -qy
   - npm ci --cache .npm --prefer-offline
-  - npm install -g @vue/cli
+  - npm i -g @vue/cli
+  - npm i -g @vue/cli-service
 
 stages:
   - build
