@@ -2,6 +2,7 @@ image: timbru31/java-node:8-jdk
 
 before_script:
   - apt-get update -qy
+  - npm ci --cache .npm --prefer-offline
   - npm install -g @vue/cli
 
 stages:
@@ -15,6 +16,11 @@ test:
 
 build:
   stage: build
+  cache:
+    key: $CI_COMMIT_REF_SLUG-$CI_PROJECT_DIR
+    paths:
+      - node_modules/
+    policy: pull
   script:
     - ./gradlew build
   artifacts:
