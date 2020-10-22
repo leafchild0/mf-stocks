@@ -5,6 +5,9 @@ before_script:
   - npm i -g @vue/cli
   - npm i -g @vue/cli-service
   - npm i -g @vue/cli-plugin-babel
+  - npm config set user 0
+  - npm config set unsafe-perm true
+
 
 stages:
   - build
