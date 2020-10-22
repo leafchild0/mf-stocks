@@ -102,49 +102,39 @@ export default {
 		},
 	}),
 	computed: {
-		formTitle()
-		{
+		formTitle() {
 			return this.editedIndex === -1 ? 'New Item' : 'Edit Item';
 		},
 	},
 	watch: {
-		dialog(val)
-		{
+		dialog(val) {
 			val || this.close();
 		},
 	},
 	methods: {
-		editItem(item)
-		{
+		editItem(item) {
 			this.editedIndex = this.carts.indexOf(item);
 			this.editedItem = Object.assign({}, item);
 			this.dialog = true;
 		},
 
-		deleteItem(item)
-		{
+		deleteItem(item) {
 			const index = this.carts.indexOf(item);
 			this.carts.splice(index, 1);
 		},
 
-		close()
-		{
+		close() {
 			this.dialog = false;
-			this.$nextTick(() =>
-			{
+			this.$nextTick(() => {
 				this.editedItem = Object.assign({}, this.defaultItem);
 				this.editedIndex = -1;
 			});
 		},
 
-		save()
-		{
-			if (this.editedIndex > -1)
-			{
+		save() {
+			if (this.editedIndex > -1) {
 				Object.assign(this.carts[this.editedIndex], this.editedItem);
-			}
-			else
-			{
+			} else {
 				this.carts.push(this.editedItem);
 			}
 			this.close();

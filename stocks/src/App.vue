@@ -60,6 +60,7 @@ export default {
 		addToCart(toAdd) {
 			// Should be added somewhere
 			// Show notification
+			// eslint-disable-next-line no-console
 			console.log(toAdd);
 			this.notification.message = 'Stock has been added to your cart';
 			this.notification.show = true;
@@ -70,6 +71,7 @@ export default {
 			const stocksResponse = await auth.get('/stocks');
 			this.stocks = stocksResponse.data;
 		} catch (e) {
+			// eslint-disable-next-line no-console
 			console.error(e);
 		}
 	}

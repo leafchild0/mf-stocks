@@ -109,7 +109,6 @@
 		methods: {
 			async save() {
 				this.validateForm();
-				console.log('Save data');
 				// Should save and close, i.e. emit an event
 				try {
 
@@ -124,11 +123,13 @@
 						
 					}
 				} catch(e) {
+					// eslint-disable-next-line no-console
 					console.log(e);
 					this.$toastr.e('Ups... Something went wrong');
 				}
 			},
 			cancel() {
+				// eslint-disable-next-line no-console
 				console.log('Cancel');
 				this.clearForm();
 				// Should emit an event somewhere

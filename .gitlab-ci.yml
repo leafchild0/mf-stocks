@@ -2,6 +2,12 @@ image: timbru31/java-node:8-jdk
 
 before_script:
   - apt-get update -qy
+  - npm i -g @vue/cli
+  - npm i -g @vue/cli-service
+  - npm i -g @vue/cli-plugin-babel
+  - npm config set user 0
+  - npm config set unsafe-perm true
+
 
 stages:
   - build
@@ -14,6 +20,11 @@ test:
 
 build:
   stage: build
+  cache:
+    key: $CI_COMMIT_REF_SLUG-$CI_PROJECT_DIR
+    paths:
+      - node_modules/
+    policy: pull
   script:
     - ./gradlew build
   artifacts:
