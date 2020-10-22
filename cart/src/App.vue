@@ -32,6 +32,7 @@ export default {
 			const cartsResponse = await auth.get('/carts');
 			if (cartsResponse.status === 200) this.carts = cartsResponse.data;
 		} catch (e) {
+			// eslint-disable-next-line no-console
 			console.error(e);
 		}
 	}
