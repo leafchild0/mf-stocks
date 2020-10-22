@@ -33,6 +33,7 @@ task buildClient(type: Exec) {
 }
 
 task buildServer(type: NpmTask) {
+    dependsOn npmInstall
     args = ['run', 'build']
 }
 
