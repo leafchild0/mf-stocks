@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: app-shell
+  cloud:
+    consul:
+      host: consul
+#      host: localhost
+      port: 8500
+      discovery:
+        prefer-ip-address: true
+        instanceId: ${spring.application.name}:${random.value}
+    loadbalancer:
+      ribbon:
+        enabled: false
+
+server:
+  port: 9000
+  error:
+    whitelabel:
+      enabled: true
+  servlet:
+      context-path: /
+
+logging:
+  level:
+    org.springframework.web: INFO
+    org.springframework.cloud.netflix: DEBUG
+    com.poc.data: TRACE
+    org.springframework.data.elasticsearch: DEBUG
+
+history:
+  db:
+    location: server/db.json
