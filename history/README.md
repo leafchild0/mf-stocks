@@ -33,3 +33,15 @@ curl -X POST \
       "type":"SELL"
 }'
 ``` 
+
+### Docker build 
+
+```shell script
+docker build --tag st-history:1.0 .
+```
+
+### Docker run  
+
+```shell script
+docker run --publish 9000:9000 --detach --name st_h st-history:1.0
+```

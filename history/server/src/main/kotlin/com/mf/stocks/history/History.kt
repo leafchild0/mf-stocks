@@ -1,4 +1,4 @@
-package com.kotlinspringvue.backend
+package com.mf.stocks.history
 
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
