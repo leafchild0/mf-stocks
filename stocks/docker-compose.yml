@@ -1,7 +1,7 @@
 version: '3.4'
 
 services:
-  consul:
+  mongo:
     image: mongo:latest
     hostname: localhost
     ports:
