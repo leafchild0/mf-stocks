@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import io.spring.gradle.dependencymanagement.dsl.DependencyManagementExtension
 
 plugins {
     id("org.springframework.boot") version "2.2.2.RELEASE"
@@ -19,11 +20,19 @@ repositories {
     }
 }
 
+configure<DependencyManagementExtension> {
+    imports {
+        mavenBom("org.springframework.cloud:spring-cloud-dependencies:Hoxton.SR1")
+    }
+}
+
 dependencies {
+    implementation(kotlin("stdlib-jdk8"))
     runtimeOnly(project(":frontend"))
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation ("org.springframework.cloud:spring-cloud-starter-consul-discovery")
     runtimeOnly("org.springframework.boot:spring-boot-devtools")
     implementation("commons-io:commons-io:2.4")
     runtimeOnly("com.h2database:h2")
