@@ -1,6 +1,6 @@
 spring:
   application:
-    name: app-shell
+    name:  mf-history
   cloud:
     consul:
       host: consul
