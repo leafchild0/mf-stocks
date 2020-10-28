@@ -12,37 +12,16 @@ buildscript {
 
 apply plugin: 'com.moowork.node'
 
-
-task installClient(type: Exec) {
-    workingDir 'client'
-    inputs.file("package-lock.json").withPathSensitivity(PathSensitivity.RELATIVE)
-    inputs.dir("src/").withPathSensitivity(PathSensitivity.RELATIVE)
-    outputs.cacheIf { true }
-
-    commandLine "npm", "install"
-}
-
-task buildClient(type: Exec) {
-    workingDir 'client'
-    dependsOn installClient
-    inputs.file("package-lock.json").withPathSensitivity(PathSensitivity.RELATIVE)
-    outputs.cacheIf { true }
-
-    inputs.dir("src/").withPathSensitivity(PathSensitivity.RELATIVE)
-    commandLine "npm", "run", "build"
-}
-
 task buildServer(type: NpmTask) {
     dependsOn npmInstall
     args = ['run', 'build']
 }
 
 task build(type: GradleBuild) {
-    tasks = ['buildClient', 'buildServer']
+    tasks = ['buildServer']
     buildName = 'user-account-internal'
 }
 
 task clean {
     delete 'dist/'
-    delete 'client/dist/'
 }
