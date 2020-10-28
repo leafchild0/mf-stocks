@@ -3,8 +3,8 @@ spring:
     name:  mf-history
   cloud:
     consul:
-#      host: consul
-      host: localhost
+      host: consul
+#      host: localhost
       port: 8500
       discovery:
         prefer-ip-address: true

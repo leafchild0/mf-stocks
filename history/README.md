@@ -43,5 +43,5 @@ docker build --tag st-history:1.0 .
 ### Docker run  
 
 ```shell script
-docker run --publish 9000:9000 --detach --name st_h st-history:1.0
+docker run --publish 9000:9000 --detach --network='mf-stocks_lan' --name st_h st-history:1.0
 ```
