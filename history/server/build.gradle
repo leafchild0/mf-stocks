@@ -1,0 +1,67 @@
+plugins {
+	id("org.springframework.boot") version "2.2.2.RELEASE"
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id("org.jetbrains.kotlin.plugin.jpa") version "1.3.50"
+	id "org.jetbrains.kotlin.jvm" version "1.3.50"
+	id "org.jetbrains.kotlin.plugin.spring" version "1.3.50"
+	id 'java'
+	id 'application'
+}
+
+group = "com.mf.stocks"
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+	maven {
+		url = uri("https://plugins.gradle.org/m2/")
+	}
+}
+
+ext {
+	set('springCloudVersion', "Hoxton.SR1")
+}
+
+application {
+	mainClassName = 'com.mf.stocks.history.HistoryApplication'
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:Hoxton.SR1"
+	}
+}
+
+dependencies {
+	runtimeOnly(project(":history:frontend"))
+	implementation("org.springframework.boot:spring-boot-starter-actuator")
+	implementation("org.springframework.boot:spring-boot-starter-web")
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+	implementation("org.springframework.cloud:spring-cloud-starter-consul-discovery")
+	runtimeOnly("org.springframework.boot:spring-boot-devtools")
+	implementation("commons-io:commons-io:2.4")
+	runtimeOnly("com.h2database:h2")
+	implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.9.8")
+	implementation("org.jetbrains.kotlin:kotlin-reflect")
+	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+	implementation("org.jetbrains.kotlin:kotlin-noarg:1.3.50")
+	testImplementation("org.springframework.boot:spring-boot-starter-test") {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+}
+
+test {
+	useJUnitPlatform()
+}
+
+compileKotlin {
+	kotlinOptions.freeCompilerArgs = ["-Xjsr305=strict"]
+	kotlinOptions.jvmTarget = "1.8"
+}

@@ -1,0 +1,8 @@
+spring:
+  application:
+    name:  mf-history
+  cloud:
+    discovery:
+      enabled: false
+    consul:
+      enabled: false
