@@ -1,5 +1,5 @@
 <template>
-	<div class='cart'>
+	<div class='account'>
 		<content-frame :data-url="contentUrl"></content-frame>
 	</div>
 </template>
@@ -12,7 +12,7 @@
 		components: {ContentFrame},
 		data() {
 			return {
-				contentUrl: 'http://localhost:3003'
+				contentUrl: 'http://localhost:3006'
 			};
 		},
 
@@ -21,7 +21,7 @@
 
 <style lang="scss">
 
-	.cart {
+	.account {
 		position: relative;
 	}
 </style>
