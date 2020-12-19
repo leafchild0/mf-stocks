@@ -1,16 +1,8 @@
 <template>
 	<v-row class='toolbar'>
 		<div class='nav'>
-			<!--<div class='nav__logo'>
-				<img alt='Stocks logo' src='../assets/logo.png' @click='gotoHome()'/>
-			</div>-->
 			<div class='nav__menu'>
-				<router-link exact active-class='router-active-link' to='/stocks'>Stocks</router-link>
-				|
-				<div class='admin'>
-					<router-link exact active-class='router-active-link' to='/history'>History</router-link>
-					|
-				</div>
+				<router-link exact active-class='router-active-link' to='/content'>Content</router-link>
 			</div>
 			<v-menu bottom offset-y>
 				<template v-slot:activator='{ on }'>
@@ -61,7 +53,7 @@
 				this.$emit('logout');
 			},
 			gotoHome() {
-				this.$router.push('/stocks');
+				this.$router.push('/content');
 			},
 			openProfile() {
 				this.$router.push({name: 'user', params: { id: this.getUser.id } });
