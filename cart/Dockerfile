@@ -8,7 +8,7 @@ COPY /nginx/default.conf /etc/nginx/conf.d/default.conf
 COPY /dist/ /usr/share/nginx/html/
 
 # Export port
-EXPOSE 8080
+EXPOSE 8700
 
 # Start application
 CMD [ "nginx", "-g", "daemon off;" ]

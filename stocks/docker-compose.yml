@@ -1,8 +1,0 @@
-version: '3.4'
-
-services:
-  mongo:
-    image: mongo:latest
-    hostname: localhost
-    ports:
-      - 27017:27017

@@ -15,6 +15,15 @@ services:
       - "8600:53"
       - "8300:8300"
       - "8301:8301"
+  mongo:
+    image: mongo:latest
+    container_name: mongo_stocks
+    depends_on:
+      - consul
+    networks:
+      - lan
+    ports:
+      - 27017:27017
   app-shell:
     build: ./app-shell
     container_name: app-shell
@@ -26,17 +35,6 @@ services:
       - lan
     ports:
       - 8088:8088
-  gateway-service:
-    build: ./gateway-service
-    container_name: gateway-service
-    links:
-      - "consul:gateway-service"
-    depends_on:
-      - consul
-    networks:
-      - lan
-    ports:
-      - 8765:8765
   auth-service:
     build: ./auth-service
     container_name: auth-service
@@ -48,3 +46,58 @@ services:
       - lan
     ports:
       - 9091:9091
+  user-account-service-ui:
+    build: ./user-account
+    container_name: user-account-service-ui
+    links:
+      - "consul:user-account-service-ui"
+    depends_on:
+      - consul
+    networks:
+      - lan
+    ports:
+      - 3006:3006
+  stocks-service-ui:
+    build: ./stocks
+    container_name: stocks-service-ui
+    links:
+      - "consul:stocks-service-ui"
+    depends_on:
+      - consul
+    networks:
+      - lan
+    ports:
+      - 3080:3080
+  history-service-ui:
+    build: ./history
+    container_name: history-service-ui
+    links:
+      - "consul:history-service-ui"
+    depends_on:
+      - consul
+    networks:
+      - lan
+    ports:
+      - 9000:9000
+  cart-service-ui:
+    build: ./cart
+    container_name: cart-service
+    links:
+      - "consul:cart-service"
+    depends_on:
+      - consul
+    networks:
+      - lan
+    ports:
+      - 8700:8700
+  gateway-service:
+    build: ./gateway-service
+    container_name: gateway-service
+    links:
+      - "consul:gateway-service"
+    depends_on:
+      - consul
+    networks:
+      - lan
+    ports:
+      - 80:80

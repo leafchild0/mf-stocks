@@ -2,6 +2,9 @@ module.exports = {
 	'transpileDependencies': [
 		'vuetify'
 	],
+	publicPath: process.env.NODE_ENV === 'production'
+		? '/history/'
+		: '/',
 	outputDir: 'build/dist',
 	assetsDir: 'static',
 	// Proxy?
