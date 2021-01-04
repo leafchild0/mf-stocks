@@ -10,7 +10,7 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
 application {
-	mainClassName = 'com.leafchild0.appshell.ClientApplication'
+	mainClassName = 'com.mf.appshell.AppShellApplication'
 }
 
 repositories {
@@ -32,8 +32,14 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-jersey'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-zuul'
 	implementation 'org.springframework.cloud:spring-cloud-starter-consul-discovery'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	compile group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.1'
+	runtime group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.1'
+	compile group: 'io.jsonwebtoken', name: 'jjwt-orgjson', version: '0.11.1'
+	compile group: 'io.jsonwebtoken', name: 'jjwt-extensions', version: '0.11.1', ext: 'pom'
+
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'

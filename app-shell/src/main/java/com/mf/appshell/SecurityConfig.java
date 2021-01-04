@@ -1,5 +1,8 @@
-package com.leafchild0.appshell;
+package com.mf.appshell;
 
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -9,11 +12,18 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import com.mf.appshell.security.JwtTokenAuthenticationFilter;
+import com.mf.appshell.security.JwtTokenProvider;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter
 {
+	@Autowired
+	private JwtTokenProvider tokenProvider;
 
 	@Bean(BeanIds.AUTHENTICATION_MANAGER)
 	@Override
@@ -36,19 +46,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 	}
 
 	@Override
-	protected void configure(HttpSecurity http) throws Exception
-	{
-		http
-				.cors()
-				.and()
-				.csrf()
-				.disable()
-				.headers().frameOptions().sameOrigin()
-				.and()
-				.authorizeRequests()
-				.antMatchers("/auth/**", "/data/**")
-				.permitAll()
-			.antMatchers("/*",
+	protected void configure(HttpSecurity httpSecurity) throws Exception {
+
+		httpSecurity
+			.csrf().disable()
+			.logout().disable()
+			.formLogin().disable()
+			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+			.and().anonymous()
+			.and()
+			.exceptionHandling().authenticationEntryPoint((req, rsp, e) -> rsp.sendError(HttpServletResponse.SC_UNAUTHORIZED))
+			.and()
+			.addFilterAfter(new JwtTokenAuthenticationFilter(tokenProvider),
+				UsernamePasswordAuthenticationFilter.class)
+			.authorizeRequests()
+			.antMatchers("/auth/login", "/auth/register").permitAll()
+			.antMatchers("/**",
 				"/favicon.ico",
 				"/**/*.png",
 				"/**/*.gif",
@@ -56,7 +69,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 				"/**/*.jpg",
 				"/**/*.html",
 				"/**/*.css",
-				"/**/*.js")
-			.permitAll();
+				"/**/*.js").permitAll()
+			.antMatchers("/actuator/**").permitAll()
+			.antMatchers("/static/**").permitAll()
+			.antMatchers("/favicon.ico").permitAll()
+			.antMatchers("/health-check").permitAll()
+			.anyRequest()
+			.authenticated();
+		;
 	}
 }

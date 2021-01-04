@@ -5,7 +5,7 @@ FROM openjdk:8-jdk-alpine
 LABEL authors="Viktor, Roman"
 
 #PORT_EXPOSE
-EXPOSE 8088
+EXPOSE 80
 
 # The application's jar file
 ARG JAR_FILE=build/libs/app-shell-0.0.1-SNAPSHOT.jar
