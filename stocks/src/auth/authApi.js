@@ -8,7 +8,7 @@
 import axios from 'axios';
 
 const authInstance = axios.create({
-	baseURL: '/gateway-service/'
+	baseURL: '/'
 });
 
 authInstance.interceptors.request.use(config => {

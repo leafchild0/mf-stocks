@@ -1,6 +1,6 @@
 spring:
   application:
-    name:  mf-history
+    name: history-service-ui
   cloud:
     consul:
       host: consul
@@ -8,7 +8,8 @@ spring:
       port: 8500
       discovery:
         prefer-ip-address: true
-        instanceId: ${spring.application.name}:${random.value}
+        instanceId: ${spring.application.name}
+#        :${random.value}
     loadbalancer:
       ribbon:
         enabled: false

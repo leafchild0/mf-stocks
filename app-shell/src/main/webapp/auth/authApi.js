@@ -9,7 +9,7 @@ import axios from 'axios';
 import store from './../store/index';
 
 const authInstance = axios.create({
-	baseURL: '/gateway-service/'
+	baseURL: '/'
 });
 
 authInstance.interceptors.request.use(config => {

@@ -8,10 +8,10 @@ spring:
       discovery:
         healthCheckPath: /health-check
         healthCheckInterval: 20s
-        instanceId: ${spring.application.name}:${random.value}
+        instanceId: ${spring.application.name}
 
 server:
-  port: 8765
+  port: 80
   error:
     whitelabel:
       enabled: true
@@ -26,7 +26,7 @@ logging:
 zuul:
   ignoredServices: "*"
   ignored-headers: Access-Control-Allow-Credentials, Access-Control-Allow-Origin
-  sensitiveHeaders: Cookie,Set-Cookie
+#  sensitiveHeaders: Cookie,Set-Cookie
   debug:
     request: true
   host:
@@ -40,11 +40,18 @@ zuul:
       path: /auth/**
       serviceId: auth-service
       sensitiveHeaders: Cookie,Set-Cookie
-    data-service:
-      path: /data/**
-      serviceId: data-service
-      sensitiveHeaders: Cookie,Set-Cookie
-#      stripPrefix: false
+    history-service:
+      path: /history/**
+      serviceId: history-service-ui
+      stripPrefix: true
+    stocks-service-ui:
+      path: /stocks/**
+      serviceId: stocks-service-ui
+      stripPrefix: true
+    user-account-service-ui:
+      path: /user-account/**
+      serviceId: user-account-service-ui
+      stripPrefix: true
 
 #auth-service:
 #  ribbon:
@@ -62,3 +69,9 @@ ribbon:
 # Secret to generate tokens, used in both auth service and in gateway
 auth-service:
   jwtSecret: a3ZzApRSDQF5E9cH3JFV1LNBzOtQEiv6OumGJudd3Ao=
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'routes'
